@@ -13,14 +13,14 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     [NSApp setApplicationIconImage:[NSImage imageNamed:NSImageNameComputer]];
-    NSUserNotification *n = [[NSUserNotification alloc] init];
-    [n setHasActionButton:YES];
-    [n setActionButtonTitle:@"WHOA"];
-    [n setTitle:@"Alejandro"];
-    [n setSubtitle:@"Testing"];
+//    NSUserNotification *n = [[NSUserNotification alloc] init];
+//    [n setHasActionButton:YES];
+//    [n setActionButtonTitle:@"WHOA"];
+//    [n setTitle:@"Alejandro"];
+//    [n setSubtitle:@"Testing"];
+    NSUserNotification *notification = [self createUserNotificationFromArguments];
 
-    NSUserNotificationCenter *nc = [NSUserNotificationCenter defaultUserNotificationCenter];
-    [nc deliverNotification:n];
+    [[NSUserNotificationCenter defaultUserNotificationCenter]deliverNotification:notification];
     [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
 }
 
@@ -30,13 +30,16 @@
     [center removeDeliveredNotification:notification];
 }
 
-- (IBAction)buttonPushed:(id)sender {
-    NSLog(@"button pushed");
-    NSUserNotification *n = [[NSUserNotification alloc] init];
-    [n setTitle:@"Alejandro"];
-    [n setSubtitle:@"Testing"];
-    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:n];
+- (NSUserNotification *)createUserNotificationFromArguments
+{
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    NSArray *arguments = [[NSProcessInfo processInfo] arguments];
+    NSString *title = [arguments objectAtIndex:0] == nil ? [arguments objectAtIndex:0] : @"Ruby Notifier";
+    [notification setTitle:title];
+    NSString *subtitle = [arguments objectAtIndex:1] == nil ? [arguments objectAtIndex:1] : @"Ruby Notifier";
+    [notification setSubtitle:subtitle];
+    
+    return notification;
 }
-
 
 @end

@@ -12,6 +12,4 @@
 
 @property (assign) IBOutlet NSWindow *window;
 
-- (IBAction)buttonPushed:(id)sender;
-
 @end
