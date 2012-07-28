@@ -8,8 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface AECAppDelegate : NSObject <NSApplicationDelegate>
+@interface AECAppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
+
+- (IBAction)buttonPushed:(id)sender;
 
 @end
