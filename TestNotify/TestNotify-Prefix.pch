@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'TestNotify' target in the 'TestNotify' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
